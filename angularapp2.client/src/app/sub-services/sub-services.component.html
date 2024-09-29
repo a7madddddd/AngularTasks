@@ -1,0 +1,10 @@
+<div class="container" style="display:flex;">
+  <div class="card" style="width: 18rem; margin: 2%;" *ngFor="let items of subServiceData">
+    <img class="card-img-top" src="{{items.subServiceImage}}" alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title">{{items.subServiceName}}</h5>
+      <p class="card-text">{{items.subServiceDescription}}</p>
+<a [routerLink]="['/SubServices', items.serviceId]" class="btn btn-primary">Go somewhere</a>
+    </div>
+  </div>
+</div>

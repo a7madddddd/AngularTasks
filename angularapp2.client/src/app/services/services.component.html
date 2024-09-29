@@ -1,0 +1,9 @@
+<div class="container" style="display:flex;">
+  <div class="card" style="width: 18rem; margin: 2%;" *ngFor="let item of servicesArray">
+  <img class="card-img-top" src="{{item.serviceImage}}" alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-title">{{item.serviceName}}</h5>
+    <p class="card-text">{{item.serviceDescription}}</p>
+    <a routerLink="/SubServices/{{item.serviceId}}" class="btn btn-primary">Go somewhere</a>
+  </div>
+</div></div>
