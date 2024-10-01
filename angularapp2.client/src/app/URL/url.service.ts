@@ -26,4 +26,20 @@ export class UrlService {
     return this.http.get<any>(`${this.staticData}/subService/GetSubServicesById/${id}`)
   }
 
+  getSingleSubSerById(id: number): Observable<any> {
+    return this.http.get<any>(`${this.staticData}subService/GetSubServicesByServicesId/${id}`)
+  }
+
+
+  addUserSub(data : any): Observable<any> {
+    return this.http.post<any>(`${this.staticData}subService/postUSerSubsecriptoin`, data)
+
+  }
+
+  getSubscriptions(): Observable<any> {
+    return this.http.get<any>(`${this.staticData}subService/SubSecriptions`)
+
+
+  }
+
 }

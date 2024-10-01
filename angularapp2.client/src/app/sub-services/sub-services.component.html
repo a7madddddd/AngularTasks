@@ -4,7 +4,10 @@
     <div class="card-body">
       <h5 class="card-title">{{items.subServiceName}}</h5>
       <p class="card-text">{{items.subServiceDescription}}</p>
-<a [routerLink]="['/SubServices', items.serviceId]" class="btn btn-primary">Go somewhere</a>
+      <a routerLink="/Single/{{items.subServiceId}}" class="btn btn-primary">Go somewhere</a>
+
     </div>
   </div>
 </div>
+
+

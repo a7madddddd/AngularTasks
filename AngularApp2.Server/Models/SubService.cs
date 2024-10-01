@@ -16,4 +16,6 @@ public partial class SubService
     public int? ServiceId { get; set; }
 
     public virtual Service? Service { get; set; }
+
+    public virtual ICollection<ServiceSubscription> ServiceSubscriptions { get; set; } = new List<ServiceSubscription>();
 }

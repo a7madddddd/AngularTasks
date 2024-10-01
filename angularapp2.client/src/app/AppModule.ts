@@ -11,6 +11,8 @@ import { HomeComponent } from "./home/home.component";
 import { NavBarComponent } from "./nav-bar/nav-bar.component";
 import { ServicesComponent } from "./services/services.component";
 import { SubServicesComponent } from "./sub-services/sub-services.component";
+import { SingleSubServiceComponent } from "./single-sub-service/single-sub-service.component";
+import { SubSecriptionComponent } from "./sub-secription/sub-secription.component";
 
 
 @NgModule({
@@ -18,14 +20,12 @@ import { SubServicesComponent } from "./sub-services/sub-services.component";
         AppComponent,
         NavBarComponent,
         FooterComponent,
-        //CategoryComponent,
-        //ProductsComponent,
         AboutUsComponent,
         ContactUsComponent,
-        //SliderComponent,
         HomeComponent,
         ServicesComponent,
-        SubServicesComponent
+    SubServicesComponent,
+    SubSecriptionComponent
     ],
     imports: [
         BrowserModule, HttpClientModule,
@@ -35,7 +35,9 @@ import { SubServicesComponent } from "./sub-services/sub-services.component";
             { path: "services", component: ServicesComponent },
             { path: "about-us", component: AboutUsComponent },
             { path: "contact-us", component: ContactUsComponent },
-            { path: 'SubServices/:id', component: SubServicesComponent },
+          { path: 'SubServices/:id', component: SubServicesComponent },
+          { path: 'SubSubciption', component: SubSecriptionComponent },
+          { path: 'Single/:id', component: SingleSubServiceComponent },
         ])
     ],
     providers: [],
