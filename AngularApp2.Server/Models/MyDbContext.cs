@@ -25,6 +25,8 @@ public partial class MyDbContext : DbContext
 
     public virtual DbSet<User> Users { get; set; }
 
+    public virtual DbSet<UserSubscription> UserSubscriptions { get; set; }
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
         => optionsBuilder.UseSqlServer("Server=DESKTOP-QJHUPSA;Database=angular;Trusted_Connection=True;TrustServerCertificate=True;");
@@ -33,20 +35,18 @@ public partial class MyDbContext : DbContext
     {
         modelBuilder.Entity<Service>(entity =>
         {
-            entity.HasKey(e => e.ServiceId).HasName("PK__Service__4550733FA87CE6B8");
+            entity.HasKey(e => e.ServiceId).HasName("PK__Service__4550733FA6CC6BC5");
 
             entity.ToTable("Service");
 
-            entity.Property(e => e.ServiceId)
-                .ValueGeneratedNever()
-                .HasColumnName("serviceID");
+            entity.Property(e => e.ServiceId).HasColumnName("serviceID");
             entity.Property(e => e.ServiceDescription).HasMaxLength(500);
             entity.Property(e => e.ServiceName).HasMaxLength(50);
         });
 
         modelBuilder.Entity<ServiceSubscription>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__service___3213E83FB98B7702");
+            entity.HasKey(e => e.Id).HasName("PK__service___3213E83F69C2CC00");
 
             entity.ToTable("service_subscription");
 
@@ -75,13 +75,11 @@ public partial class MyDbContext : DbContext
 
         modelBuilder.Entity<SubService>(entity =>
         {
-            entity.HasKey(e => e.SubServiceId).HasName("PK__subServi__C5C51FFA2243E423");
+            entity.HasKey(e => e.SubServiceId).HasName("PK__subServi__C5C51FFA30D7BDF1");
 
             entity.ToTable("subService");
 
-            entity.Property(e => e.SubServiceId)
-                .ValueGeneratedNever()
-                .HasColumnName("subServiceID");
+            entity.Property(e => e.SubServiceId).HasColumnName("subServiceID");
             entity.Property(e => e.ServiceId).HasColumnName("serviceID");
             entity.Property(e => e.SubServiceDescription).HasMaxLength(500);
             entity.Property(e => e.SubServiceName).HasMaxLength(50);
@@ -93,7 +91,7 @@ public partial class MyDbContext : DbContext
 
         modelBuilder.Entity<Subscription>(entity =>
         {
-            entity.HasKey(e => e.SubscriptionId).HasName("PK__subscrip__4A0F55C7A62609D7");
+            entity.HasKey(e => e.SubscriptionId).HasName("PK__subscrip__4A0F55C753251150");
 
             entity.ToTable("subscription");
 
@@ -107,9 +105,9 @@ public partial class MyDbContext : DbContext
 
         modelBuilder.Entity<User>(entity =>
         {
-            entity.HasKey(e => e.UserId).HasName("PK__Users__1788CCAC2B3FBD6F");
+            entity.HasKey(e => e.UserId).HasName("PK__Users__1788CCAC6F0DE83C");
 
-            entity.HasIndex(e => e.Email, "UQ__Users__A9D10534E9EB0348").IsUnique();
+            entity.HasIndex(e => e.Email, "UQ__Users__A9D10534B6643578").IsUnique();
 
             entity.Property(e => e.UserId).HasColumnName("UserID");
             entity.Property(e => e.Address).HasMaxLength(255);
@@ -122,6 +120,23 @@ public partial class MyDbContext : DbContext
             entity.Property(e => e.PasswordHash).HasMaxLength(255);
             entity.Property(e => e.Phone).HasMaxLength(20);
             entity.Property(e => e.UserName).HasMaxLength(100);
+        });
+
+        modelBuilder.Entity<UserSubscription>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__UserSubs__3213E83F67DF6CCA");
+
+            entity.Property(e => e.Id)
+                .ValueGeneratedNever()
+                .HasColumnName("id");
+            entity.Property(e => e.EndDate).HasColumnName("endDate");
+            entity.Property(e => e.StartDate).HasColumnName("startDate");
+            entity.Property(e => e.SubServiceId).HasColumnName("subServiceID");
+            entity.Property(e => e.SubscriptionId).HasColumnName("subscriptionID");
+
+            entity.HasOne(d => d.Subscription).WithMany(p => p.UserSubscriptions)
+                .HasForeignKey(d => d.SubscriptionId)
+                .HasConstraintName("FK_Subscription");
         });
 
         OnModelCreatingPartial(modelBuilder);

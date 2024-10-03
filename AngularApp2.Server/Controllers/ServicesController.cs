@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using AngularApp2.Server.Models;
+using AngularApp2.Server.DTOs;
 
 namespace AngularApp2.Server.Controllers
 {
@@ -116,6 +117,47 @@ namespace AngularApp2.Server.Controllers
         private bool ServiceExists(int id)
         {
             return _context.Services.Any(e => e.ServiceId == id);
+        }
+
+
+
+
+
+        [HttpPost("addsService")]
+        public IActionResult addService([FromForm] addService serviceDto)
+        {
+
+            var folder = Path.Combine(Directory.GetCurrentDirectory(), "services Images");
+            if (!Directory.Exists(folder))
+            {
+
+
+                Directory.CreateDirectory(folder);
+
+
+            }
+
+
+            var fileImage = Path.Combine(folder, serviceDto.ServiceImage.FileName);
+
+            using (var stream = new FileStream(fileImage, FileMode.Create))
+            {
+
+                serviceDto.ServiceImage.CopyToAsync(stream);
+
+            }
+
+            var newService = new Service
+            {
+
+                ServiceName = serviceDto.ServiceName,
+                ServiceDescription = serviceDto.ServiceDescription,
+                ServiceImage = serviceDto.ServiceImage.FileName,
+
+            };
+            _context.Services.Add(newService);
+            _context.SaveChanges();
+            return Ok(newService);
         }
     }
 }

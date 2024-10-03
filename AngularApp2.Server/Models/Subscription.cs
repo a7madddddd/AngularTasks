@@ -14,4 +14,6 @@ public partial class Subscription
     public string? SubscriptionDescription { get; set; }
 
     public virtual ICollection<ServiceSubscription> ServiceSubscriptions { get; set; } = new List<ServiceSubscription>();
+
+    public virtual ICollection<UserSubscription> UserSubscriptions { get; set; } = new List<UserSubscription>();
 }

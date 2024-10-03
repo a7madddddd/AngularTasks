@@ -8,6 +8,14 @@
     <BuildOutputFolder>$(MSBuildProjectDirectory)\dist\angularapp2.client\browser\</BuildOutputFolder>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="src\Admin\**" />
+    <TypeScriptConfiguration Remove="src\Admin\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="src\app\app.module.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="src\app\Admin\" />
     <Folder Include="src\app\URL\" />
   </ItemGroup>
 </Project>

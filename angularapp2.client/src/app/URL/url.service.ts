@@ -33,12 +33,28 @@ export class UrlService {
 
   addUserSub(data : any): Observable<any> {
     return this.http.post<any>(`${this.staticData}subService/postUSerSubsecriptoin`, data)
-
   }
 
   getSubscriptions(): Observable<any> {
     return this.http.get<any>(`${this.staticData}subService/SubSecriptions`)
+  }
+  
 
+  addUSer(data: any): Observable<any> {
+
+    return this.http.post(`${this.staticData}Users`, data)
+
+  }
+
+
+  LoginUSer(data: any): Observable<any> {
+
+    return this.http.post(`${this.staticData}Users/UserLogin`, data)
+
+  }
+
+  addService(data: any): Observable<any> {
+    return this.http.post(`https://localhost:7123/api/Services/addsService`, data)
 
   }
 

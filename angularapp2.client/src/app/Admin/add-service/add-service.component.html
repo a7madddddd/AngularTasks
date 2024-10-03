@@ -1,0 +1,19 @@
+<form #addService="ngForm" (ngSubmit)="addNewService(addService.value)">
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Service Name</label>
+    <input name="ServiceName" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" ngModel>
+    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+  </div>
+
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">Service Description</label>
+    <input name="ServiceDescription" type="text" class="form-control" id="exampleInputPassword1" ngModel>
+  </div>
+
+  <div class="mb-3">
+    <label for="imageInput" class="form-label">Upload Image</label>
+    <input name="ServiceImage" type="file" class="form-control" id="imageInput" accept="image/*" ngModel (change)="changeImage($event)">
+  </div>
+
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
