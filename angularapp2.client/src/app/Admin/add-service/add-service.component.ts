@@ -1,19 +1,19 @@
-import { Component, OnInit } from '@angular/core'; // Import OnInit
+import { Component, OnInit } from '@angular/core'; 
 import { UrlService } from '../../URL/url.service';
 
 @Component({
   selector: 'app-add-service',
   templateUrl: './add-service.component.html',
-  styleUrls: ['./add-service.component.css'] // Corrected 'styleUrl' to 'styleUrls'
+  styleUrls: ['./add-service.component.css'] 
 })
-export class AddServiceComponent implements OnInit { // Implement OnInit
+export class AddServiceComponent implements OnInit { 
 
   image: any;
 
   constructor(private _ser: UrlService) { }
 
   ngOnInit() {
-    // Initialization logic if needed
+      
   }
 
   changeImage(event: any) {
@@ -21,11 +21,11 @@ export class AddServiceComponent implements OnInit { // Implement OnInit
   }
 
   addNewService(data: any) {
-    const form = new FormData(); // Correctly instantiate FormData
+    const form = new FormData();
 
     // Complete the form
     for (let key in data) {
-      if (data.hasOwnProperty(key)) { // Check if key belongs to data
+      if (data.hasOwnProperty(key)) { 
         form.append(key, data[key]);
       }
     }
@@ -35,7 +35,7 @@ export class AddServiceComponent implements OnInit { // Implement OnInit
     this._ser.addService(form).subscribe(() => {
       alert("Service added successfully");
     }, error => {
-      console.error("Error adding service", error); // Handle error
+      console.error("Error adding service", error); 
     });
   }
 }

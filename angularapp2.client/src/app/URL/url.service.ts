@@ -58,4 +58,10 @@ export class UrlService {
 
   }
 
-}
+
+
+  UpdateService(id: any, data: any): Observable<any> {
+    debugger
+      return this.http.put(`${this.staticData}Services/UpdateService/${id}`, data)
+    }
+  }

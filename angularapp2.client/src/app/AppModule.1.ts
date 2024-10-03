@@ -21,50 +21,57 @@ import { ServicesComponent } from "./services/services.component";
 import { SingleSubServiceComponent } from "./single-sub-service/single-sub-service.component";
 import { SubSecriptionComponent } from "./sub-secription/sub-secription.component";
 import { SubServicesComponent } from "./sub-services/sub-services.component";
+import { GetServicesAdminComponent } from "./Admin/get-services-admin/get-services-admin.component";
+import { UpdateServiceAdimnComponent } from "./Admin/update-service-adimn/update-service-adimn.component";
 
 
 
 
 
 @NgModule({
-    declarations: [
-        AppComponent,
-        NavBarComponent,
-        FooterComponent,
-        AboutUsComponent,
-        ContactUsComponent,
-        HomeComponent,
-        ServicesComponent,
-        SubServicesComponent,
-        SubSecriptionComponent,
-        RegusretrationUsersComponent,
-        LoginComponent, // Ensure this is declared,
-        DashboardComponent,
-        AddServiceComponent
-    ],
-    imports: [
-        BrowserModule,
-        HttpClientModule,
-        FormsModule, // Ensure FormsModule is imported
-        AppRoutingModule,
-        RouterModule.forRoot([
-            { path: "", component: HomeComponent, pathMatch: "full" },
-            { path: "services", component: ServicesComponent },
-            { path: "about-us", component: AboutUsComponent },
-            { path: "contact-us", component: ContactUsComponent },
-            { path: 'SubServices/:id', component: SubServicesComponent },
-            { path: 'SubSubciption', component: SubSecriptionComponent },
-            { path: 'Single/:id', component: SingleSubServiceComponent },
-            { path: 'registration', component: RegusretrationUsersComponent },
-            { path: 'Login', component: LoginComponent },
-            {
-                path: 'Dashboard', component: DashboardComponent, children: [
-                { path: "AddService", component: AddServiceComponent },
-                { path: "**", component: DashboardComponent }
-                ]
-            },
-        ])
-    ],
+  declarations: [
+    AppComponent,
+    NavBarComponent,
+    FooterComponent,
+    AboutUsComponent,
+    ContactUsComponent,
+    HomeComponent,
+    ServicesComponent,
+    SubServicesComponent,
+    SubSecriptionComponent,
+    RegusretrationUsersComponent,
+    LoginComponent,
+    DashboardComponent,
+    GetServicesAdminComponent,
+    UpdateServiceAdimnComponent,
+    AddServiceComponent,
+    SingleSubServiceComponent
+  ],
+  imports: [
+    BrowserModule,
+    HttpClientModule,
+    FormsModule,
+    AppRoutingModule,
+    RouterModule.forRoot([
+      { path: "", component: HomeComponent, pathMatch: "full" },
+      { path: "services", component: ServicesComponent },
+      { path: "about-us", component: AboutUsComponent },
+      { path: "contact-us", component: ContactUsComponent },
+      { path: 'SubServices/:id', component: SubServicesComponent },
+      { path: 'SubSubciption', component: SubSecriptionComponent },
+      { path: 'Single/:id', component: SingleSubServiceComponent },
+      { path: 'registration', component: RegusretrationUsersComponent },
+      { path: 'Login', component: LoginComponent },
+      {
+        path: 'Dashboard', component: DashboardComponent, children: [
+          { path: "AddService", component: AddServiceComponent },
+          { path: "getServiesOfAdmin", component: GetServicesAdminComponent },
+          { path: "UpdateServiceAdmin/:id", component: UpdateServiceAdimnComponent },
+          
+        ]
+      },
+    ])
+  ],
     providers: [],
     bootstrap: [AppComponent]
 })

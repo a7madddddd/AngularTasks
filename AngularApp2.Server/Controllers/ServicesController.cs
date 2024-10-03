@@ -159,5 +159,44 @@ namespace AngularApp2.Server.Controllers
             _context.SaveChanges();
             return Ok(newService);
         }
+
+
+
+
+        [HttpPut("UpdateService/{id}")]
+        public IActionResult EditService(int id, [FromForm] UpdateServiceDTO updateService)
+        {
+            
+            var service = _context.Services.FirstOrDefault(x => x.ServiceId == id);
+
+            if (service == null)
+            {
+                return NotFound(); // Return 404 if the service is not found
+            }
+
+            var folder = Path.Combine(Directory.GetCurrentDirectory(), "services Images");
+            if (!Directory.Exists(folder))
+            {
+                Directory.CreateDirectory(folder);
+            }
+
+            var fileImage = Path.Combine(folder, updateService.ServiceImage.FileName);
+            using (var stream = new FileStream(fileImage, FileMode.Create))
+            {
+                // Wait for the file copy operation to complete
+                updateService.ServiceImage.CopyTo(stream);
+            }
+
+            // Update the service properties
+            service.ServiceImage = updateService.ServiceImage.FileName; // Assuming you want to save just the filename
+            service.ServiceDescription = updateService.ServiceDescription; // Update the description
+            service.ServiceName = updateService.ServiceName; // Update the name
+
+            // Save changes to the database
+            _context.SaveChanges();
+
+            return Ok(service); // Return the updated service
+        }
+
     }
 }

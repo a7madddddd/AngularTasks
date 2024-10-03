@@ -1,0 +1,22 @@
+<table class="table" *ngFor="let item of servicesArray">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">First</th>
+      <th scope="col">Last</th>
+      <th scope="col">Handle</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td>{{item.serviceName}}</td>
+      <td>{{item.serviceDescription}}</td>
+      <td>{{item.serviceImage}}</td>
+      <td>
+        <a [routerLink]="['/Dashboard/UpdateServiceAdmin', item.serviceId]">Edit</a>
+      </td>
+    </tr>
+  </tbody>
+</table>
