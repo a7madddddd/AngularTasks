@@ -198,5 +198,18 @@ namespace AngularApp2.Server.Controllers
             return Ok(service); // Return the updated service
         }
 
+        [HttpGet("getImages/{ImageName}")]
+        public IActionResult getImage(string ImageName) {
+
+            var pathImage = Path.Combine(Directory.GetCurrentDirectory(), "services Images", ImageName);
+
+            if (System.IO.File.Exists(pathImage)) {
+
+                return PhysicalFile(pathImage, "Image/*");
+            }
+            return NotFound();
+        }  
+        
     }
+        
 }
