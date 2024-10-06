@@ -18,19 +18,42 @@ export class LoginComponent {
   }
 
 
+  //LoginUSer(data: any) {
+  //  var form = new FormData();
+  //  for (let key in data) {
+  //    form.append(key, data[key])
+  //  }
+  //  this._ser.LoginUSer(form).subscribe(() => {
+  //    alert("user Login succsefully")
+  //    this._router.navigate(['/services']);
+  //  },
+
+  //    (error) => {
+  //      alert(error.error)
+  //    });
+  //}
+
+
+
+
   LoginUSer(data: any) {
+
     var form = new FormData();
     for (let key in data) {
       form.append(key, data[key])
     }
-    this._ser.LoginUSer(form).subscribe(() => {
-      alert("user Login succsefully")
-      this._router.navigate(['/services']);
-    },
+    this._ser.LoginUSer(form).subscribe((newData) => {
+      this._ser['email'].next(newData.email);
+      if (newData.email == 'admin@gmail.com') {
+        this._router.navigate(['/Dashboard'])
 
-      (error) => {
-        alert(error.error)
-      });
+      } else {
+        this._router.navigate(['/services'])
+
+      }
+      alert('userLogin successfully')
+
+    })
   }
 }
 
